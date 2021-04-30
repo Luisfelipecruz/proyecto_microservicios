@@ -6,7 +6,7 @@
         <meta charset="UTF-8">
         <meta name="description" content="Conoce a Madesign! La mejor experiencia en darle vida y disenio a tu proyecto"> 
         <meta name="robots" content="index,follow" > 
-        <meta name="viewport" content="width=device-width, inictial-scale=1.0">
+        <meta name="viewport" content="width=device-width, inictial-scale=1.0 user">
         
         <!--Bootstrap CSS-->
         <link rel="stylesheet" href="./index.css" type="text/css">
@@ -19,43 +19,56 @@
     </head>   
 
     <body>
+
+      <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="./index.html">ConnecTwo</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="./contact.html">contact</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./languages.html">languages</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./aboutus.html">about us</a>
+              </li>
+            </ul>
+          </div>
+        </nav>  
+      </header>
+
       <div class="container">
-        <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-          <a class="navbar-text__logo" href="./index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          ConnecTwo
-          </a>
-      
-          <ul class="nav nav-pills">
-            <li class="nav-item"><a href="#" class="nav-link" style="color: black;">contact</a></li>
-            <li class="nav-item"><a href="#" class="nav-link" style="color: black;">languages</a></li>
-            <li class="nav-item"><a href="#" class="nav-link" style="color: black;">about us</a></li>
-          </ul>
-        </header>
+        <div class="row">
+          <main>
+            <div class="main-info">
+              <div class="left-box">
+                <figure class="left-image">
+                  <a href=""><img src="./images/map.png" class="left-image__link" alt=""></a>
+                </figure>
+                <h4 class="covid">covid-19 geographic colombian map</h4>
+            </div>
 
-        <main>
-          
-          <h1 class="covid">covid-19 map info</h1>
-          <h1 class="students">uis students attendance</h1>
-        </main>
-
-        <div class="main-info">
             <div class="right-box">
-              <!--esto es una box-->
-              <img class="students-image" src="./images/students.png" alt="">
+              <figure class="right-image">
+                <a href="#"><img src="./images/students.png" class="right-image__link" alt=""></a>
+              </figure>
+              <h4 class="attendance">uis campus attendance</h4>
             </div>
-
-            <div class="left-box">
-              <!--esto es una box-->
-              <img class="map-image" src="./images/map.png" alt="">
-            </div>
+          </main>
         </div>
-        
+      </div>
 
       </div>
+
         <footer class="text-center text-white" style="background-color: #f1f1f1;">
           <!-- Grid container -->
           <div class="container pt-4">
-            <a href="https://github.com/Luisfelipecruz/proyecto_microservicios"><img style="width: 15px; height: 15px; position: absolute; top: 4px;" src="https://www.flaticon.es/svg/vstatic/svg/25/25231.svg?token=exp=1619677309~hmac=b7a16362d588c67e185d4e76621635b5" alt=""></a>
+            <a class="container pt-4__link" href="https://github.com/Luisfelipecruz/proyecto_microservicios"><img class="container pt-4__link__github" src="https://www.flaticon.es/svg/vstatic/svg/25/25231.svg?token=exp=1619677309~hmac=b7a16362d588c67e185d4e76621635b5" alt=""></a>
           </div>
           <!-- Grid container -->
         
@@ -66,8 +79,9 @@
           </div>
           <!-- Copyright -->
         </footer>
+
         <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
 
     </body>
 </html>

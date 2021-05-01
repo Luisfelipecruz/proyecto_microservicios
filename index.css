@@ -20,6 +20,12 @@ footer{
 .right-image__link{
     border-radius: 5px;
 }
+.right-image__link:hover{
+    filter: blur(1.3rem);
+}
+.right-image__link:active{
+    filter: blur(1.3rem);
+}
 .right-image{
     color: transparent;
     border-radius: 10px;
@@ -31,6 +37,14 @@ footer{
     position: relative;
     padding-left: 75px;
     padding-top: 15px;
+}
+.left-image__link:hover{
+    filter: blur(1.3rem);
+
+}
+.left-image__link:active{
+    filter: blur(1.3rem);
+    
 }
 .left-image{
     position: relative;

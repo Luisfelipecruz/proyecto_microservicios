@@ -1,10 +1,13 @@
 <template>
-  <Tutorial/>
+  <home/>
 </template>
 
 <script>
+import Home from "./home";
 export default {
-  name: 'Index'
+  name: 'Index',
+  components: {Home},
+  layout: 'default'
 }
 </script>
 
@@ -12,12 +15,14 @@ export default {
 :root {
 
 }
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 html {
-  font-size: 62.5%;
+  /* font-size: 62.5%;*/
 }
 </style>

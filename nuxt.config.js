@@ -4,7 +4,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'connectwo',
+    title: 'ConnecTwo',
     htmlAttrs: {
       lang: 'en'
     },
@@ -15,7 +15,8 @@ export default {
       {name: 'format-detection', content: 'telephone=no'}
     ],
     link: [
-      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {rel: 'stylesheet', href: "https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"},
     ]
   },
 
@@ -23,7 +24,9 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [],
+  plugins: [
+    {src: '~/plugins/bootstrap.bundle.min.js', mode: 'client'}
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -32,6 +35,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    '@nuxtjs/tailwindcss'
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -52,5 +56,9 @@ export default {
         ['@babel/plugin-proposal-private-property-in-object', {loose: true}]
       ]
     }
-  }
+  },
+  server: {
+    port: 3000, // default: 3000
+    host: '0.0.0.0', // default: localhost
+  },
 }

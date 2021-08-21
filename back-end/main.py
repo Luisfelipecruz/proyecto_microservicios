@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-
+from controller import usuarioController
 from fastapi.middleware.cors import CORSMiddleware
 
 # from .hashing import Hash

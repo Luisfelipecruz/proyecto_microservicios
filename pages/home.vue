@@ -43,7 +43,7 @@
                   </nuxt-link>
                 </li>
                 <li class="my-1.5 p-1.5 rounded-lg">
-                  <nuxt-link to="/" class="flex flex-row items-center nav-link text-black p-0 m-0">
+                  <nuxt-link to="/weather" class="flex flex-row items-center nav-link text-black p-0 m-0">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                          class="bi bi-cloud-drizzle mx-2" viewBox="0 0 16 16">
                       <path

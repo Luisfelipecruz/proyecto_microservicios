@@ -1,47 +1,114 @@
 <template>
-  <div>
+  <div id="container" class="h-screen">
     <navbar/>
-    <section class="my-5">
+    <section>
       <div class="container-sm">
-        <div class="w-1/2">
-          <form>
-            <label for="cityName" class="form-label"><strong>Buscar ciudad</strong></label>
-            <input id="cityName" v-model="city" type="text" class="form-control" placeholder="Buscar ciudad">
-            <button type="button" class="btn btn-primary my-1" @click="fetchWeather() ; fetchTime()">Buscar</button>
-          </form>
+        <div class="sm:w-2/3 lg:w-1/2">
+          <div class="d-flex align-items-end p-2 rounded-3" style="border: 1px solid white">
+            <form>
+              <label for="cityName" class="form-label fs-2 fw-light text-white">Buscar ciudad</label>
+              <input id="cityName" v-model="city" type="text"
+                     class="form-control bg-transparent rounded-pill d-inline-block border-white text-white text-shadow"
+                     placeholder="Buscar ciudad">
+            </form>
+            <button type="button"
+                    class="btn btn-outline-light rounded-pill py-3 mx-2 d-flex align-items-center justify-content-center"
+                    style="width: 90px; height: 40px" @click="getWeather();getTime()">
+              Buscar
+            </button>
+          </div>
         </div>
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-12 col-12" v-if="typeof weather.main != 'undefined'">
-            <p class="fs-4">{{ time.date_time_txt }}</p>
-            <h3 class="fs-1 fw-bold">{{ weather.name }}, {{ weather.sys.country }}</h3>
-            <h4 class="fs-3">Coordenadas<p>Lat: {{ weather.coord.lat }} Lon: {{ weather.coord.lon }}</p></h4>
-            <hr class="md:w-1/4 w-1/2">
-            <br>
-            <p class="fs-1">{{ Math.round(weather.main.temp) }}°C</p>
-            <p class="fs-1 text-uppercase">{{ weather.weather[0].description }}</p>
-            <p class="fs-4">Sensacion termica {{ Math.round(weather.main.feels_like) }}°C</p>
-            <article>
-              <section class="d-flex  justify-content-start">
-                <div class="container px-0">
-                  <div class="row  w-75">
-                    <div class="col-12 col-sm-6">
-                      <p><strong>Humedad: </strong>{{ weather.main.humidity }}%</p>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <p><strong>Presion: </strong>{{ weather.main.pressure }} hPa</p>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <p><strong>Velocidad del viento: </strong>{{ weather.wind.speed }} m/s</p>
-                    </div>
-                    <div class="col-12 col-sm-6">
-                      <p><strong>Visibildad: </strong>{{ weather.visibility }} m</p>
+        <div v-if="typeof weather.main != 'undefined' " class="d-flex justify-content-center p-3 lg:w-1/2">
+          <p v-show="false">{{ weather }}</p>
+          <div v-if="weather.weather[0].main == 'Clouds'" class="nuboso">
+            <img src="/status/nubes.png" alt="nubes">
+          </div>
+          <div v-if="weather.weather[0].main =='Rain'" class="lluvia">
+            <img src="/status/lluvia.png" alt="lluvia" class="img-fluid">
+          </div>
+          <div v-if="weather.weather[0].main =='Clear'" class="despejado">
+            <img src="/status/despejado.png" alt="lluvia" class="img-fluid">
+          </div>
+
+        </div>
+        <div v-if="typeof weather.main == 'undefined'" class="d-flex justify-content-center p-3 lg:w-1/2">
+          <p v-show="false">{{ weather.data }}</p>
+          <div v-if="typeof weather.data != 'undefined'">
+            <div v-if="weather.data.weather[0].main == 'Clouds'" class="nuboso">
+              <img src="/status/nubes.png" alt="nubes">
+            </div>
+            <div v-if="weather.data.weather[0].main =='Rain'" class="lluvia">
+              <img src="/status/lluvia.png" alt="lluvia" class="img-fluid">
+            </div>
+            <div v-if="weather.data.weather[0].main =='Clear'" class="despejado">
+              <img src="/status/despejado.png" alt="lluvia" class="img-fluid">
+            </div>
+          </div>
+        </div>
+        <div class="row px-1">
+          <div v-if="typeof weather.main != 'undefined'" class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="forecast-box mt-3 py-3 rounded-3">
+              <p class="fs-6 text-white text-shadow text-center">Hoy, {{ time.date_time_txt }}</p>
+              <h3 class="fs-1 fw-bold text-center text-white text-shadow">{{ weather.name }}, {{
+                  weather.sys.country
+                }}</h3>
+              <p class="text-8xl text-white text-shadow text-center">{{ Math.round(weather.main.temp) }}°C</p>
+              <p class="fs-1 text-uppercase text-white text-shadow text-center fw-light">
+                {{ weather.weather[0].description }}</p>
+              <article>
+                <section class="d-flex  justify-content-start">
+                  <div class="container px-0">
+                    <div class="row">
+                      <div class="col-12 col-sm-12 d-flex justify-content-center">
+                        <p class="text-white text-shadow fw-light"><strong>Humedad: </strong>{{
+                            weather.main.humidity
+                          }}%</p>
+                      </div>
+                      <div class="col-12 col-sm-12 d-flex justify-content-center">
+                        <p class="text-white text-shadow fw-light"><strong>Velocidad del
+                          viento: </strong>{{ weather.wind.speed }} m/s</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </section>
-            </article>
+                </section>
+              </article>
+            </div>
           </div>
-          <div class="col-lg-6 col-md-6 col-sm-12 col-12"></div>
+          <div v-if="typeof weather.main == 'undefined'" class="col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="forecast-box mt-3 py-3">
+              <p v-show="false">{{ weather.data }}</p>
+              <div v-if="typeof weather.data != 'undefined'">
+                <p v-show="false">{{ time.data }}</p>
+                <div v-if="typeof time.data != 'undefined'">
+                  <p class="fs-6 text-white text-shadow text-center">Hoy, {{ time.data.date_time_txt }}</p>
+                </div>
+                <h3 class="fs-1 fw-bold text-center text-white text-shadow">{{ weather.data.name }},
+                  {{ weather.data.sys.country }}</h3>
+                <p class="text-8xl text-white text-shadow text-center">{{ Math.round(weather.data.main.temp) }}°C</p>
+                <p class="fs-1 text-uppercase text-white text-shadow text-center fw-light">
+                  {{ weather.data.weather[0].description }}</p>
+                <article>
+                  <section class="d-flex  justify-content-start">
+                    <div class="container px-0">
+                      <div class="row">
+                        <div class="col-12 col-sm-12 d-flex justify-content-center">
+                          <p class="text-white text-shadow fw-light">
+                            <strong>Humedad: </strong>{{ weather.data.main.humidity }}%</p>
+                        </div>
+                        <div class="col-12 col-sm-12 d-flex justify-content-center">
+                          <p class="text-white text-shadow fw-light"><strong>Velocidad del
+                            viento: </strong>{{ weather.data.wind.speed }} m/s</p>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </article>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12">
+
+          </div>
         </div>
       </div>
     </section>
@@ -49,6 +116,8 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "Weather",
   data() {
@@ -58,38 +127,51 @@ export default {
       URL_BASE: 'https://api.openweathermap.org/data/2.5/',
       TIME_KEY: '3d557a3d716344dbba531d06379353d8',
       TIME_URL: 'https://api.ipgeolocation.io/timezone?',
+      link: "https://www.openstreetmap.org/#map=12/4.6096/-74.0818",
       weather: {},
       time: {}
+    }
+  },
+  mounted() {
+    axios
+      .get(`${this.URL_BASE}weather?q=Bogota&units=metric&lang=es&appid=${this.API_KEY}`)
+      .then(data => (this.weather = data))
+    axios.get(`${this.TIME_URL}apiKey=${this.TIME_KEY}&location=Bogota`)
+      .then(response => (this.time = response))
+  },
 
-    }
-  },
   methods: {
-    fetchWeather() {
-      fetch(`${this.URL_BASE}weather?q=${this.city}&units=metric&lang=es&appid=${this.API_KEY}`)
-        .then(res => {
-          return res.json();
-        }).then(this.setWeather)
-    },
-    fetchTime() {
-      fetch(`${this.TIME_URL}apiKey=${this.TIME_KEY}&location=${this.city}`)
-        .then(response => {
-          return response.json();
-        }).then(this.setTime)
-    },
-    setWeather(data) {
+    async getWeather() {
+      const {data} = await axios.get(`${this.URL_BASE}weather?q=${this.city}&units=metric&lang=es&appid=${this.API_KEY}`);
       this.weather = data;
-      // eslint-disable-next-line no-console
-      console.log(this.weather)
     },
-    setTime(data) {
+    async getTime() {
+      const {data} = await axios.get(`${this.TIME_URL}apiKey=${this.TIME_KEY}&location=${this.city}`);
       this.time = data;
-      // eslint-disable-next-line no-console
-      console.log(this.time)
     }
   },
+
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+#container {
+  /* background: linear-gradient(192.05deg, #47BFDF 0%, #4A91FF 100%);*/
+  background-image: url('/bacground-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 
+::placeholder {
+  color: white;
+}
+
+.forecast-box {
+  background: rgba(255, 255, 255, 0.3) !important;
+  border: 1px solid white;
+}
+
+.text-shadow {
+  text-shadow: -1.39839px 2.09758px 0.699193px rgba(0, 0, 0, 0.1);
+}
 </style>

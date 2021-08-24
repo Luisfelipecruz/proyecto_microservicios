@@ -11,12 +11,15 @@
     "lint": "yarn lint:js"
   },
   "dependencies": {
+    "@googlemaps/js-api-loader": "^1.12.2",
     "@nuxtjs/axios": "^5.13.6",
+    "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
     "bootstrap-icons": "^1.5.0",
     "core-js": "^3.15.1",
-    "nuxt": "^2.15.7",
-    "sass": "^1.37.5"
+    "nuxt": "^2.15.8",
+    "sass": "^1.37.5",
+    "vue3-google-map": "^0.8.2"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.14.7",

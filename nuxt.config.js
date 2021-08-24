@@ -25,7 +25,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    {src: '~/plugins/bootstrap.bundle.min.js', mode: 'client'}
+    {src: '~/plugins/bootstrap.bundle.min.js', mode: 'client'},
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -45,8 +45,7 @@ export default {
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {
-  },
+  axios: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
@@ -58,8 +57,8 @@ export default {
       ]
     }
   },
-  /* server: {
+   server: {
     port: 3000, // default: 3000
     host: '0.0.0.0', // default: localhost
-  }, */
+  },
 }

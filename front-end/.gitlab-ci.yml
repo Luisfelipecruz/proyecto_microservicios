@@ -1,0 +1,33 @@
+stages:
+   - build
+   - deploy
+
+
+# build stage
+build prod:
+   image: node:16
+   stage: build
+   only:
+      - main
+   script:
+      # Install vuecli
+      - npm install -g @vue/cli@latest
+      # Install dependencies
+      - npm install
+      # Build App
+      - npm run generate
+   artifacts:
+      paths:
+         # Build folder
+         - dist/
+      expire_in: 1 hour
+
+# production stage
+deploy prod:
+   image: python:latest
+   stage: deploy
+   only:
+      - main
+   script:
+      - pip install awscli
+      - aws s3 sync ./dist s3://impulsa-client --delete

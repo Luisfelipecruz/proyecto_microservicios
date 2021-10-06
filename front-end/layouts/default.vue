@@ -3,8 +3,9 @@
     <header>
       <b-navbar class="fixed-top bg-light shadow-sm" toggleable="lg" type="light">
         <b-navbar-brand class="font-weight-light text-d-primary">
-          <b-button @click="toRoute('/')"
-                    class="bg-transparent btn-outline-none shadow-none border-0 text-dark text-decoration-none text-d-primary">
+          <b-button
+            class="bg-transparent btn-outline-none shadow-none border-0 text-dark text-decoration-none text-d-primary"
+            @click="toRoute('/')">
             ConnecTwo
           </b-button>
         </b-navbar-brand>
@@ -14,9 +15,10 @@
         <b-collapse id="nav-collapse" class="justify-content-end" is-nav>
           <b-navbar-nav class="align-items-center">
             <b-nav-item>
-              <b-button @click="toRoute('/')"
-                        class="bg-transparent btn-outline-none shadow-none text-decoration-none border-0 text-dark font-weight-light text-s-primary"
-                        to="/">
+              <b-button
+                class="bg-transparent btn-outline-none shadow-none text-decoration-none border-0 text-dark font-weight-light text-s-primary"
+                to="/"
+                @click="toRoute('/')">
                 Inicio
               </b-button>
             </b-nav-item>
@@ -33,17 +35,7 @@
                   </nuxt-link>
                 </b-dropdown-item>
                 <b-dropdown-item v-if="getUser != undefined">
-                  <nuxt-link class="text-decoration-none text-dark font-weight-light text-s-primary" to="/">
-                    Covid
-                  </nuxt-link>
-                </b-dropdown-item>
-                <b-dropdown-item v-if="getUser != undefined">
-                  <nuxt-link class="text-decoration-none text-dark font-weight-light text-s-primary" to="/">
-                    Geodata UIS
-                  </nuxt-link>
-                </b-dropdown-item>
-                <b-dropdown-item v-if="getUser != undefined">
-                  <nuxt-link class="text-decoration-none text-dark font-weight-light text-s-primary" to="/">
+                  <nuxt-link class="text-decoration-none text-dark font-weight-light text-s-primary" to="/route">
                     Dijkstra UIS
                   </nuxt-link>
                 </b-dropdown-item>
@@ -59,9 +51,9 @@
                   </nuxt-link>
                 </b-dropdown-item>
                 <b-dropdown-item v-if="getUser != undefined">
-                  <b-button @click="logOut"
+                  <b-button to="/signin"
                             class="bg-transparent border-0 px-0 mx-0 text-decoration-none text-dark font-weight-light text-s-primary"
-                            to="/signin">
+                            @click="logOut">
                     Cerrar sesion
                   </b-button>
                 </b-dropdown-item>

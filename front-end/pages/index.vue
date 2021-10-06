@@ -3,19 +3,21 @@
     <div class="row flex">
       <div class="col-auto info-container">
         <div class="container">
-          <div class="row">
+          <div class="row d-flex justify-content-center align-items-center">
             <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-              <b-button @click="isLogged" class="border-0 bg-transparent btn-outline-none shadow-none p-0">
+              <b-button class="border-0 bg-transparent btn-outline-none shadow-none p-0" @click="isLogged('schedule')">
                 <figure class="rounded-sm" style="border: 1px solid gray">
                   <img alt="agendamiento" class="img-fluid" src="/widgets/calender.svg">
                 </figure>
               </b-button>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6 col-12">
-              <nuxt-link to="/">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-12 p-3 p-sm-2 p-md-2 p-lg-1">
+              <b-button class="border-0 bg-transparent btn-outline-none shadow-none p-0" @click="isLogged('route')">
                 <figure class="rounded-sm" style="border: 1px solid gray">
-                  <img alt="covid en colombia" class="img-fluid" src="/widgets/virus.svg">
+                  <img alt="rutas uis" class="img-fluid" src="/widgets/pana.svg">
                 </figure>
+              </b-button>
+              <nuxt-link to="/routes">
               </nuxt-link>
             </div>
             <div class="col-lg-4 col-md-4 col-sm-12 col-12">
@@ -26,16 +28,7 @@
               </nuxt-link>
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 my-3">
-              <div class="box d-flex justify-content-center align-items-center bg-gray-200 rounded-3">
-                <p class="fs-1 text-uppercase">
-                  resumen de agendamiento
-                </p>
-              </div>
-            </div>
-          </div>
-          <b-conta8iner class="justify-content-center">
+          <b-container class="justify-content-center">
             <b-row id="covid-service" class="d-flex justify-content-center align-items-center">
               <b-col sm="12" md="4"
                      class="d-flex flex-column justify-content-center align-items-center position-relative">
@@ -88,7 +81,7 @@
                 </svg>
               </b-col>
             </b-row>
-          </b-conta8iner>
+          </b-container>
         </div>
       </div>
     </div>
@@ -121,11 +114,11 @@ export default {
       this.santander = (newArray[29])
       this.santander_muertos = (this.covid.data[2])[6];
     },
-    isLogged() {
+    isLogged(route) {
       if (this.$cookies.get('userLogged') === undefined) {
         this.$router.push('/signin')
       } else {
-        window.location.href = 'schedule'
+        window.location.href = route
       }
     }
   },

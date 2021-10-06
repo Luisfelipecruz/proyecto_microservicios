@@ -1,86 +1,35 @@
 <template>
-  <div>
-    <article class="mb-5">
-      <div class="container d-flex flex-column align-items-center text-center">
-        <section class="my-5">
-          <h3
-            class="
-              text-primary-title
-              fw-bold
-              text-center text-red text-alegraya
-            "
-          >
-            Perfil
-          </h3>
-        </section>
-        <section id="profileData">
-          <p class="fw-bold fs-1">
-            {{ user['custom:name'] }} {{ user['custom:lastName'] }}
-          </p>
-          <p class="fs-1">@{{ user.nickname }}</p>
-          <p class="fs-1">Relación: {{ user['custom:uRelation'] }}</p>
-          <p class="fs-1">Pregrado: {{ user['custom:preProgram'] }}</p>
-          <p class="fs-1">Posgrado: {{ user['custom:posProgram'] }}</p>
-        </section>
-        <br />
-        <!--        <section id="profileProjects">
-          <section>
-            <h4 class="fw-bold fs-1">Emprendimientos registrados:</h4>
-          </section>
-          <div class="my-3">
-            <figure class="my-5">
-              <img class="img-fluid" src="/sections/image-static-project.svg" width="200" alt="emprendimiento">
-            </figure>
-            <p class="fs-2 fw-bold">{{ user.emprendimiento }}</p>
-          </div>
-        </section>-->
-      </div>
-
-      <div class="container d-flex justify-content-center">
-        <nuxt-link class="registerLink" to="/register-project">
-          <h6 class="fs-1 fw-bold align-self-center">
-            Registrar emprendimiento
-          </h6>
-
-          <button class="btn btn-outline-none">
-            <img
-              src="/sections/plus-button.svg"
-              width="30"
-              alt="registrar emprendimiento"
-            />
-          </button>
-        </nuxt-link>
-      </div>
-    </article>
-  </div>
+  <b-container class="d-flex justify-content-center align-items-center">
+    <b-card class="shadow-lg p-3 w-50">
+      <b-card-body class="d-flex flex-column justify-content-center align-items-center position-relative">
+        <h1 class="font-weight-light text-center" style="font-size: calc(3rem + 0.1vw)">
+          {{ getUser.primNomUsr }} {{ getUser.segNomUsr }} {{ getUser.primApeUsr }} {{ getUser.SegmApeUsr }}
+        </h1>
+        <div class="text-center font-weight-normal" style="font-size: calc(2rem + 0.3vw)">
+          Codigo de estudiante
+          <p class="font-weight-light" style="font-size: 2rem">{{ getUser.CodEst }}</p>
+        </div>
+        <div class="text-center font-weight-normal" style="font-size: calc(2rem + 0.3vw)">
+          Genero
+          <p class="font-weight-light" style="font-size: 2rem">{{ getUser.generoUsr }}</p>
+        </div>
+      </b-card-body>
+    </b-card>
+  </b-container>
 </template>
 
 <script>
-import { Auth } from 'aws-amplify'
-
 export default {
-  name: 'Profile',
-  data: () => ({
-    user: {},
-  }),
-  async mounted() {
-    try {
-      const { attributes } = await Auth.currentAuthenticatedUser()
-      this.user = attributes
-    } catch (e) {
-      console.log(e)
-      if (e === 'The user is not authenticated') {
-        await this.$router.push('/login')
-      }
+  name: "Profile",
+  data: () => ({}),
+  computed: {
+    getUser() {
+      return this.$cookies.get('userLogged')
     }
-  },
+  }
 }
 </script>
 
-<style lang="scss">
-.registerLink {
-  text-decoration: none;
-  color: black;
-  display: flex;
-}
+<style scoped>
+
 </style>
